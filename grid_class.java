@@ -45,7 +45,7 @@ public class grid_class {
 
   //The logic for the game
   public void game_logic () {
-    //For each cell in the grid, 'ressurect it' if it has 3 neibours, otherwise kill it
+    //For each cell in the grid, 'ressurect it' if it has 3 neighbours, otherwise kill it
     for (int b=0;b<grid_data.length;b++) { 
       if (grid_data[b][b] != 3) {
         if (check_neighbours(b, b) < 2 || check_neighbours(b, b) > 3) {
