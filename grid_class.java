@@ -2,9 +2,9 @@ public class grid_class {
   //Create the array to hold the game's data. In the future, I'll create a function to handle this
   int[][] grid_data = {
             {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
-            {3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
-            {3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
-            {3, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
+            {3, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
+            {3, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
+            {3, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
             {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
             {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
             {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3},
@@ -23,6 +23,8 @@ public class grid_class {
   int a;
   int b;
   int count;
+  int x_loc;
+  int y_loc;
   int live_cell_count = 0;
   
 
@@ -45,17 +47,28 @@ public class grid_class {
 
   //The logic for the game
   public void game_logic () {
-    //For each cell in the grid, 'ressurect it' if it has 3 neighbours, otherwise kill it
-    for (int b=0;b<grid_data.length;b++) { 
-      if (grid_data[b][b] != 3) {
-        if (check_neighbours(b, b) < 2 || check_neighbours(b, b) > 3) {
-          kill_cell(b, b);
-        } else if (check_neighbours(b, b) == 3) {
-          resurrect_cell(b, b);
-        }
-      }
+     x_loc = -1;
+    //For each cell in the grid, 'ressurect it' if it has 3  or 2 neighbours, otherwise kill it
+    //!We need all the changes to the array to happen at the end of the function, not the middle!
+    for (int[] innerArray: grid_data) {
+      x_loc = x_loc + 1;
+      y_loc = -1;
+      for (int data: innerArray){
+        y_loc = y_loc + 1;
+        System.out.println ("Testing " + x_loc + " and " + y_loc);
+        if (grid_data[x_loc][y_loc] != 3) {
+          System.out.println ("Running on " + x_loc + " and " + y_loc);
+          if (check_neighbours(x_loc, y_loc) < 2 || check_neighbours(x_loc, y_loc) > 3) {
+            kill_cell(x_loc, y_loc);
+            System.out.println("Killing cell");
+          } else if (check_neighbours(x_loc, y_loc) == 3 || check_neighbours(x_loc, y_loc) == 2) {
+            resurrect_cell(x_loc, y_loc);
+            System.out.println("ressurecting cell");
+          }
+       }
     }
-  }
+   }
+ }
 
   //'kill' cell in a given co-ordinate
   public void kill_cell (int i, int j) {
