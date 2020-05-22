@@ -14,7 +14,9 @@ public class grid_class {
             {3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3}, 
             {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3}
   };
-
+  
+  //Is this working?
+  //Just testing this with eclipse ide!
   //Used to calculate where live cells are in function<insert function name>
   int[] i_values = {1, -1, 0, 0, 1, -1, 1, -1};
   int [] j_values = {0, 0, 1, -1, 1, -1, -1, 1};
