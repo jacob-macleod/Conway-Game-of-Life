@@ -16,7 +16,7 @@ public class grid_class {
   };
   
   //Is this working?
-  //Just testing this with eclipse ide!
+  //Just testing this with gitpod ide!
   //Used to calculate where live cells are in function<insert function name>
   int[] i_values = {1, -1, 0, 0, 1, -1, 1, -1};
   int [] j_values = {0, 0, 1, -1, 1, -1, -1, 1};
